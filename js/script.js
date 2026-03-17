@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initPageLoader();
   initCustomCursor();
   initSmoothScroll();
-  initScrollProgress();
   initNavigation();
   initAnimations();
   initMagneticButtons();
@@ -95,50 +94,43 @@ hamburger.addEventListener("click", () => {
 /* ========================================
    SMOOTH SCROLL (Lenis)
    ======================================== */
+/* ========================================
+   SMOOTH SCROLL (Lenis + GSAP FIXED)
+   ======================================== */
 function initSmoothScroll() {
-  if (typeof Lenis !== 'undefined') {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false
+  if (typeof Lenis === "undefined") return;
+
+  const lenis = new Lenis({
+    duration: 1.1,
+    smoothWheel: false,
+    smoothTouch: false,
+    wheelMultiplier: 1,
+    touchMultiplier: 2,
+  });
+
+  // Update ScrollTrigger on scroll
+  if (typeof ScrollTrigger !== "undefined") {
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Use GSAP ticker instead of requestAnimationFrame
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
     });
-    
+
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    // If GSAP not present, fallback RAF
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-    
     requestAnimationFrame(raf);
-    
-    // Sync with ScrollTrigger
-    if (typeof ScrollTrigger !== 'undefined') {
-      ScrollTrigger.addEventListener('refresh', () => lenis.refresh());
-    }
   }
 }
 
 /* ========================================
    SCROLL PROGRESS BAR
    ======================================== */
-function initScrollProgress() {
-  const progressBar = document.createElement('div');
-  progressBar.className = 'scroll-progress';
-  document.body.appendChild(progressBar);
-  
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
-    
-    progressBar.style.transform = `scaleX(${scrollPercent / 100})`;
-  });
-}
 
 /* ========================================
    NAVIGATION
