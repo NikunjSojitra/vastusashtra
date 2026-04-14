@@ -28,7 +28,7 @@ function initPageLoader() {
   window.addEventListener('load', () => {
     gsap.to(loader, {
       opacity: 0,
-      duration: 1,
+      duration: 3,
       ease: 'power2.inOut',
       onComplete: () => {
         loader.style.display = 'none';
@@ -652,12 +652,11 @@ function initLazyLoading() {
       }
     });
   });
-  
   images.forEach(img => imageObserver.observe(img));
 }
 
 // Initialize lazy loading
-initLazyLoading();
+  initLazyLoading();
 
 /* ========================================
    ACCESSIBILITY ENHANCEMENTS

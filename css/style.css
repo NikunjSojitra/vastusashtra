@@ -24,7 +24,7 @@
   --dark: #1b3a1b; /* Deep Forest Green: Main Heading Color */
   --dark-light: #2f4f2f; /* Medium Forest Green */
   --text-primary: #1b3a1b; /* Primary Text */
-  --text-secondary: #3a5a3a; /* Secondary Text (Dark Olive) */
+  --text-secondary: #000; /* Secondary Text (Dark Olive) */
   --text-muted: #6b8e6b; /* Muted Green/Grey for footers/small text */
 
   /* Shadows (Green tinted for harmony) */
@@ -42,8 +42,8 @@
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
-  --font-heading: "Playfair Display", serif;
-  --font-body: "Inter", sans-serif;
+  --font-heading: "Roboto", serif;
+  --font-body: "Roboto", sans-serif;
 }
 
 /* Reset & Base */
@@ -78,16 +78,19 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 5  00;
   line-height: 1.2;
   color: var(--dark);
 }
 
+h2{
+  color: #78096b;
+}
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(2.5rem, 3vw, 4.5rem);
 }
 h2 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(2rem, 3vw, 3.5rem);
 }
 h3 {
   font-size: clamp(1.5rem, 3vw, 2.5rem);
@@ -103,13 +106,13 @@ p {
 }
 
 a {
-  color: var(--primary);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: var(--transition-normal);
 }
 
 a:hover {
-  color: var(--gold);
+  color: var(--text-secondary);
 }
 
 /* Custom Cursor */
@@ -311,6 +314,12 @@ a:hover {
   width: 100%;
 }
 
+.logo{
+  width: 60px;
+  height: 60px;
+  object-fit: scale-down;
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -332,6 +341,7 @@ a:hover {
   background-position: center;
   opacity: 0.1;
   z-index: 0;
+  background-attachment: fixed;
 }
 
 .hero-content {
@@ -343,7 +353,7 @@ a:hover {
 }
 
 .hero-subtitle {
-  font-size: 1.125rem;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 4px;
   color: var(--primary);
@@ -353,13 +363,13 @@ a:hover {
 
 .hero-title {
   margin-bottom: 1.5rem;
-  color: var(--dark);
+  color:  #78096b;
 }
 
 .hero-description {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  margin-bottom: 2.5rem;
+  font-size: 18px;
+  color: var(--dark);
+  margin-bottom: 1rem;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -371,8 +381,8 @@ a:hover {
   align-items: center;
   justify-content: center;
   padding: 1rem 1.5rem;
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 2px;
   border-radius: 50px;
@@ -396,7 +406,7 @@ a:hover {
   border: none;
 }
 
-.hero-buttons .btn-outline {
+.hero-buttons .btn-outline, .cta-green .btn-outline {
   background: transparent;
   border-color: var(--primary);
   color: var(--primary);
@@ -430,7 +440,7 @@ a:hover {
 
 /* Section Styles */
 .section {
-  padding: 8rem 0;
+  padding: 4rem 0;
   position: relative;
 }
 
@@ -455,7 +465,7 @@ a:hover {
 .section-description {
   font-size: 1.125rem;
   color: var(--text-secondary);
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -548,12 +558,13 @@ a:hover {
 .timeline-item:nth-child(odd) {
   left: 0;
   padding-right: 3rem;
-  text-align: right;
+  text-align: center;
 }
 
 .timeline-item:nth-child(even) {
   left: 50%;
   padding-left: 3rem;
+  text-align: center;
 }
 
 .timeline-dot {
@@ -683,6 +694,7 @@ a:hover {
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-slow);
+  box-shadow: var(--bs-box-shadow-lg) !important;
 }
 
 .gallery-item:hover img {
@@ -711,10 +723,11 @@ a:hover {
 
 /* Contact Form */
 .contact-form {
-  background: var(--white);
-  padding: 3rem;
+  background: var(--cream);
+  padding: 2rem;
   border-radius: 20px;
   box-shadow: var(--shadow-md);
+  
 }
 
 .form-group {
@@ -770,7 +783,7 @@ textarea.form-control {
 
 .footer-description {
   color: var(--cream-dark);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .footer-title {
@@ -828,7 +841,11 @@ textarea.form-control {
   padding-top: 2rem;
   margin-top: 3rem;
   text-align: center;
-  color: var(--cream-dark);
+  color: var(--white);
+}
+.footer-bottom p{
+  color: #fff;
+  margin: 0;
 }
 
 /* Scroll Indicator */
@@ -978,7 +995,6 @@ textarea.form-control {
 
 .lightbox-close:hover {
   background: var(--primary);
-  color: var(--white);
 }
 
 /* Magnetic Button Effect */
@@ -991,8 +1007,16 @@ textarea.form-control {
 .gradient-text {
   background: var(--gradient-primary);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: fff;
+  -webkit-text-fill-color: #fff;
   background-clip: text;
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); Subtle shadow */
+}
+.bg-white .gradient-text {
+  background: var(--cream);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: var(--cream);
+  background-clip: text;
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); Subtle shadow */
 }
 
 /* Section Backgrounds */
@@ -1066,7 +1090,7 @@ textarea.form-control {
 
   .navbar-nav {
     position: absolute;
-    top: 70px;
+    top: 75px;
     left: 0;
     width: 100%;
     background: var(--cream);
@@ -1074,7 +1098,8 @@ textarea.form-control {
     align-items: center;
     display: none;
     padding: 20px 0;
-    gap: 0;
+    gap: 20px;
+    height: 100vh;
   }
 
   .navbar-nav.active {
@@ -1087,4 +1112,26 @@ textarea.form-control {
   color: var(--cream);
   box-shadow: var(--shadow-sm);
   font-family: var(--font-body);
+}
+
+.footer-logo{
+  width: 120px;
+  height: 140px;
+  background-color: transparent;
+  /* border-radius: 50%; */
+  /* object-fit: cover; */
+  /* animation: flip 5s infinite alternate-reverse; */
+}
+
+@keyframes flip {
+  0% {
+    transform: perspective(400px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(400px) rotateY(360deg);
+  }
+}
+
+.footer-logo:hover {
+  animation: flip 2s infinite alternate-reverse;
 }
